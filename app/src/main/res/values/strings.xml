@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">言語の切り替え</string>
+    <string-array name="language">
+        <item>ロシア語</item>
+        <item>英語</item>
+    </string-array>
+    <string name="app_button">OK</string>
+    <string name="app_text">あなたがそれを正しくしたからといって、あなたが大丈夫になるとは限りません。</string>
+</resources>

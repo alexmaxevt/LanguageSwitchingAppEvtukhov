@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Переключение языка</string>
+    <string-array name="language">
+        <item>Русский</item>
+        <item>Английский</item>
+    </string-array>
+    <string name="app_button">ОК</string>
+    <string name="app_text">Если ты всё сделал правильно, это ещё не значит, что у тебя всё будет хорошо.</string>
+</resources>

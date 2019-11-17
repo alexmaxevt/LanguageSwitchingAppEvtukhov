@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spinner_height">100dp</dimen>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="spinner_marginTop">172dp</dimen>
+    <dimen name="spinner_marginBottom">26dp</dimen>
+    <dimen name="button_marginBottom">34dp</dimen>
+    <dimen name="textView_marginBottom">315dp</dimen>
+</resources>
