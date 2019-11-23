@@ -6,4 +6,9 @@
     </string-array>
     <string name="app_button">OK</string>
     <string name="app_text">あなたがそれを正しくしたからといって、あなたが大丈夫になるとは限りません。</string>
+    <string-array name="colors">
+        <item>黒緑</item>
+        <item>黒</item>
+        <item>青</item>
+    </string-array>
 </resources>

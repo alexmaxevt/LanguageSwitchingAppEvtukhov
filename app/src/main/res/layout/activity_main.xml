@@ -9,14 +9,28 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="@dimen/zero"
-        android:layout_height="@dimen/zero"
+        android:layout_height="@dimen/spinner_height"
         android:layout_marginTop="@dimen/spinner_marginTop"
         android:layout_marginBottom="@dimen/spinner_marginBottom"
         android:entries="@array/language"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"/>
+
+    <Spinner
+        android:id="@+id/spinnerColor"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/spinner_height"
+        android:layout_marginTop="@dimen/spinner_marginTop"
+        android:layout_marginBottom="@dimen/spinner_marginBottom"
+        android:entries="@array/colors"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/spinner"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/button"
@@ -27,7 +41,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerColor" />
 
     <TextView
         android:id="@+id/textView"

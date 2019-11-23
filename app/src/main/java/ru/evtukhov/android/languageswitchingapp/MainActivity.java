@@ -18,35 +18,47 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private Spinner language;
+    private Spinner colors;
     private Button ok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_main);
         initViews();
         initSpinnerLanguage();
     }
 
-    private void initViews () {
+    private void initViews() {
         language = findViewById(R.id.spinner);
+        colors = findViewById(R.id.spinnerColor);
         ok = findViewById(R.id.button);
     }
+
     @IntDef({Language.RUSSIAN, Language.ENGLISH})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface Language {
+    private @interface Language {
         int RUSSIAN = 0;
         int ENGLISH = 1;
     }
 
-    private void initSpinnerLanguage () {
+    @IntDef({Color.GREEN, Color.BLACK, Color.BLUE})
+    @Retention(RetentionPolicy.SOURCE)
+    private @interface Color {
+        int GREEN = 0;
+        int BLACK = 1;
+        int BLUE = 2;
+    }
+
+    private void initSpinnerLanguage() {
         ArrayAdapter<CharSequence> spinnerLanguage = ArrayAdapter.createFromResource(this, R.array.language, android.R.layout.simple_spinner_item);
         spinnerLanguage.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         language.setAdapter(spinnerLanguage);
         language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                btnOk(position);
+            public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
+                initSpinnerColors(position);
             }
 
             @Override
@@ -56,27 +68,61 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void btnOk(@Language final int position) {
+    private void initSpinnerColors(final int languageNumber) {
+        ArrayAdapter<CharSequence> spinnerColors = ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
+        spinnerColors.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colors.setAdapter(spinnerColors);
+        colors.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int color, long id) {
+                btnOk(languageNumber, color);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void btnOk(@Language final int lang, @Color final int color) {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (position) {
-                    case Language.RUSSIAN:
-                        Locale ru = new Locale("ru");
-                        Configuration configRU = new Configuration();
-                        configRU.setLocale(ru);
-                        getResources().updateConfiguration(configRU, getBaseContext().getResources().getDisplayMetrics());
-                        recreate();
+                Locale locale = setLocale(lang);
+                setLanguage(locale);
+                switch (color) {
+                    case Color.GREEN:
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_GREEN);
                         break;
-                    case Language.ENGLISH:
-                        Locale en = new Locale("en");
-                        Configuration configEN = new Configuration();
-                        configEN.setLocale(en);
-                        getResources().updateConfiguration(configEN, getBaseContext().getResources().getDisplayMetrics());
-                        recreate();
+                    case Color.BLACK:
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BLACK);
+                        break;
+                    case Color.BLUE:
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BLUE);
                         break;
                 }
             }
         });
+    }
+
+    private Locale setLocale(@Language final int lang) {
+        String language = "";
+        switch (lang) {
+            case Language.RUSSIAN:
+                language = "ru";
+                break;
+            case Language.ENGLISH:
+                language = "en";
+                break;
+        }
+        return new Locale(language);
+    }
+
+    private void setLanguage(final Locale language) {
+        Configuration configuration = new Configuration();
+        configuration.setLocale(language);
+        getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+        recreate();
     }
 }

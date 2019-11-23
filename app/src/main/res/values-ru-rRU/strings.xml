@@ -7,4 +7,9 @@
     </string-array>
     <string name="app_button">ОК</string>
     <string name="app_text">Если ты всё сделал правильно, это ещё не значит, что у тебя всё будет хорошо.</string>
+    <string-array name="colors">
+        <item>зеленый</item>
+        <item>черный</item>
+        <item>синий</item>
+    </string-array>
 </resources>
